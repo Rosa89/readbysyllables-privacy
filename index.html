@@ -203,6 +203,10 @@
         <span class="pl">O aplikacji</span>
         <span class="en" style="display:none">About</span>
     </a>
+    <a href="#" onclick="showPage('delete')" data-page="delete">
+        <span class="pl">Usuwanie konta</span>
+        <span class="en" style="display:none">Delete Account</span>
+    </a>
     <div class="lang-switch">
         <button onclick="toggleLang()">EN / PL</button>
     </div>
@@ -776,6 +780,126 @@
 </div><!-- /en -->
 
 </div><!-- /about page -->
+
+
+<!-- ==================== USUWANIE KONTA / DELETE ACCOUNT ==================== -->
+<div class="page" id="delete">
+
+<div class="pl">
+
+<div class="card">
+    <h2>Usuwanie konta w aplikacji Read by Syllables</h2>
+    <p>Każdy zarejestrowany użytkownik może w dowolnym momencie trwale usunąć swoje konto i wszystkie powiązane dane.</p>
+</div>
+
+<div class="card">
+    <h2>Jak usunąć konto</h2>
+    <ol>
+        <li>Otwórz aplikację <strong>Read by Syllables</strong></li>
+        <li>Zaloguj się na swoje konto</li>
+        <li>Przejdź do ekranu <strong>Profil</strong> (ikona osoby na dolnym pasku)</li>
+        <li>Przewiń na dół do sekcji <strong>„Strefa zagrożenia"</strong></li>
+        <li>Kliknij przycisk <strong>„Usuń konto"</strong></li>
+        <li>Potwierdź usunięcie wpisując słowo <strong>USUŃ</strong></li>
+        <li>Kliknij <strong>„Potwierdzam usunięcie"</strong></li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>Jakie dane zostaną usunięte</h2>
+    <table>
+        <thead>
+            <tr><th>Dane</th><th>Akcja</th><th>Termin</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Konto użytkownika (email, hasło)</td><td>Trwale usunięte</td><td>Natychmiast</td></tr>
+            <tr><td>Profil użytkownika</td><td>Trwale usunięty</td><td>Natychmiast</td></tr>
+            <tr><td>Ustawienia (kolory sylab, czcionka, język)</td><td>Trwale usunięte</td><td>Natychmiast</td></tr>
+            <tr><td>Role dostępowe i uprawnienia</td><td>Trwale usunięte</td><td>Natychmiast</td></tr>
+            <tr><td>Aktywna subskrypcja</td><td>Anulowana automatycznie</td><td>Natychmiast</td></tr>
+            <tr><td>Publikacje utworzone przez użytkownika</td><td>Trwale usunięte</td><td>Do 30 dni</td></tr>
+            <tr><td>Dane transakcji płatniczych</td><td>Zachowane (wymóg prawny)</td><td>Do 5 lat</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card">
+    <h2>Ważne informacje</h2>
+    <ul>
+        <li>Usunięcie konta jest <strong>nieodwracalne</strong> — nie można przywrócić konta ani danych</li>
+        <li>Zakupy jednostkowe (permanentne) zostaną utracone</li>
+        <li>Jeśli masz aktywną subskrypcję, zostanie ona automatycznie anulowana</li>
+        <li>Dane przechowywane lokalnie na urządzeniu (preferencje) należy usunąć ręcznie poprzez odinstalowanie aplikacji</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>Kontakt</h2>
+    <p>Jeśli nie możesz usunąć konta samodzielnie lub masz pytania, napisz do nas:</p>
+    <p><a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+    <p>W wiadomości podaj adres e-mail powiązany z kontem.</p>
+</div>
+
+</div><!-- /pl -->
+
+<div class="en" style="display:none">
+
+<div class="card">
+    <h2>Delete Account — Read by Syllables</h2>
+    <p>Any registered user can permanently delete their account and all associated data at any time.</p>
+</div>
+
+<div class="card">
+    <h2>How to delete your account</h2>
+    <ol>
+        <li>Open the <strong>Read by Syllables</strong> app</li>
+        <li>Log in to your account</li>
+        <li>Go to the <strong>Profile</strong> screen (person icon in the bottom bar)</li>
+        <li>Scroll down to the <strong>"Danger Zone"</strong> section</li>
+        <li>Tap the <strong>"Delete Account"</strong> button</li>
+        <li>Confirm deletion by typing the word <strong>DELETE</strong></li>
+        <li>Tap <strong>"Confirm Deletion"</strong></li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>What data will be deleted</h2>
+    <table>
+        <thead>
+            <tr><th>Data</th><th>Action</th><th>Timeframe</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>User account (email, password)</td><td>Permanently deleted</td><td>Immediately</td></tr>
+            <tr><td>User profile</td><td>Permanently deleted</td><td>Immediately</td></tr>
+            <tr><td>Settings (syllable colors, font, language)</td><td>Permanently deleted</td><td>Immediately</td></tr>
+            <tr><td>Access roles and permissions</td><td>Permanently deleted</td><td>Immediately</td></tr>
+            <tr><td>Active subscription</td><td>Automatically cancelled</td><td>Immediately</td></tr>
+            <tr><td>Publications created by user</td><td>Permanently deleted</td><td>Up to 30 days</td></tr>
+            <tr><td>Payment transaction data</td><td>Retained (legal requirement)</td><td>Up to 5 years</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card">
+    <h2>Important information</h2>
+    <ul>
+        <li>Account deletion is <strong>irreversible</strong> — the account and data cannot be recovered</li>
+        <li>One-time (permanent) purchases will be lost</li>
+        <li>Active subscriptions will be automatically cancelled</li>
+        <li>Data stored locally on the device (preferences) should be removed by uninstalling the app</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>Contact</h2>
+    <p>If you cannot delete your account or have questions, contact us:</p>
+    <p><a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+    <p>Please include the email address associated with your account.</p>
+</div>
+
+</div><!-- /en -->
+
+</div><!-- /delete page -->
 
 </main>
 
