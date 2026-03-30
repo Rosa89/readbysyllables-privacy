@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read by Syllables — Polityka Prywatności</title>
+    <style>
+        :root {
+            --forest-dark: #1B3A12;
+            --forest-mid: #2E7D32;
+            --forest-light: #C8E6C9;
+            --accent: #FFD54F;
+            --text: #2c3e2c;
+            --text-light: #5a6e5a;
+            --bg: #f8faf8;
+            --card: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-mid) 100%);
+            color: white;
+            padding: 2.5rem 1rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        header p {
+            opacity: 0.85;
+            font-size: 0.95rem;
+        }
+
+        nav {
+            background: var(--forest-dark);
+            padding: 0.7rem 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--forest-light);
+            text-decoration: none;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            background: var(--forest-mid);
+            color: white;
+        }
+
+        .lang-switch {
+            position: absolute;
+            right: 1rem;
+            top: 0.7rem;
+        }
+
+        .lang-switch button {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .lang-switch button:hover { background: rgba(255,255,255,0.25); }
+
+        main {
+            max-width: 780px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page { display: none; }
+        .page.active { display: block; }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border: 1px solid #e8ede8;
+        }
+
+        h2 {
+            color: var(--forest-mid);
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--forest-light);
+        }
+
+        h3 {
+            color: var(--forest-dark);
+            font-size: 1.05rem;
+            margin: 1.2rem 0 0.5rem;
+        }
+
+        p { margin-bottom: 0.8rem; }
+
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+        }
+
+        li { margin-bottom: 0.4rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid #e8ede8;
+        }
+
+        th {
+            background: var(--forest-light);
+            color: var(--forest-dark);
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--forest-light);
+            color: var(--forest-dark);
+            padding: 0.15rem 0.6rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .highlight {
+            background: #fffde7;
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.2rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid #e8ede8;
+            margin-top: 2rem;
+        }
+
+        footer a { color: var(--forest-mid); }
+
+        @media (max-width: 600px) {
+            .card { padding: 1.3rem; }
+            main { padding: 0 1rem; }
+            header h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Read by Syllables</h1>
+    <p>Aplikacja do nauki czytania dla dzieci</p>
+</header>
+
+<nav id="main-nav">
+    <a href="#" onclick="showPage('privacy')" class="active" data-page="privacy">
+        <span class="pl">Polityka Prywatności</span>
+        <span class="en" style="display:none">Privacy Policy</span>
+    </a>
+    <a href="#" onclick="showPage('terms')" data-page="terms">
+        <span class="pl">Regulamin</span>
+        <span class="en" style="display:none">Terms of Service</span>
+    </a>
+    <a href="#" onclick="showPage('about')" data-page="about">
+        <span class="pl">O aplikacji</span>
+        <span class="en" style="display:none">About</span>
+    </a>
+    <div class="lang-switch">
+        <button onclick="toggleLang()">EN / PL</button>
+    </div>
+</nav>
+
+<main>
+
+<!-- ==================== POLITYKA PRYWATNOŚCI (PL) ==================== -->
+<div class="page active" id="privacy">
+
+<div class="pl">
+
+<div class="card">
+    <h2>Polityka Prywatności</h2>
+    <p><strong>Data wejścia w życie:</strong> 30 marca 2026</p>
+    <p><strong>Ostatnia aktualizacja:</strong> 30 marca 2026</p>
+    <p>Niniejsza Polityka Prywatności opisuje, w jaki sposób aplikacja „Read by Syllables" (dalej: „Aplikacja") zbiera, wykorzystuje i chroni dane osobowe użytkowników. Aplikacja jest przeznaczona dla dzieci w wieku 4–8 lat korzystających z niej pod nadzorem rodziców lub opiekunów.</p>
+</div>
+
+<div class="card">
+    <h2>1. Administrator danych</h2>
+    <p>Administratorem danych osobowych jest:</p>
+    <p><strong>Sebastian Rosiński</strong><br>
+    E-mail: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+</div>
+
+<div class="card">
+    <h2>2. Jakie dane zbieramy</h2>
+    <table>
+        <thead>
+            <tr><th>Kategoria</th><th>Dane</th><th>Cel</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="badge">Rejestracja</span></td><td>Adres e-mail, hasło (zaszyfrowane)</td><td>Utworzenie i zabezpieczenie konta</td></tr>
+            <tr><td><span class="badge">OAuth</span></td><td>Identyfikator Google/Facebook, adres e-mail</td><td>Logowanie przez konto zewnętrzne</td></tr>
+            <tr><td><span class="badge">Ustawienia</span></td><td>Wybrane kolory sylab, rozmiar czcionki, język interfejsu</td><td>Personalizacja doświadczenia</td></tr>
+            <tr><td><span class="badge">Płatności</span></td><td>Identyfikator transakcji (RevenueCat/Google Play)</td><td>Zarządzanie subskrypcjami i zakupami</td></tr>
+            <tr><td><span class="badge">Treści</span></td><td>Publikacje utworzone przez autorów (tekst, obrazy)</td><td>Świadczenie usługi platformy edukacyjnej</td></tr>
+        </tbody>
+    </table>
+
+    <div class="highlight">
+        <strong>Czego NIE zbieramy:</strong> Nie zbieramy danych lokalizacyjnych, nie rejestrujemy aktywności przeglądania, nie tworzymy profili behawioralnych, nie zbieramy danych z kontaktów, aparatu ani mikrofonu (poza celowym uploadem obrazków przez autorów).
+    </div>
+</div>
+
+<div class="card">
+    <h2>3. Ochrona dzieci</h2>
+    <p>Aplikacja jest przeznaczona dla dzieci w wieku 4–8 lat i traktujemy ochronę ich prywatności priorytetowo:</p>
+    <ul>
+        <li>Konta zakładane są przez rodziców lub opiekunów prawnych</li>
+        <li>Nie zbieramy od dzieci danych wykraczających poza korzystanie z treści edukacyjnych</li>
+        <li>Nie wyświetlamy reklam</li>
+        <li>Nie udostępniamy danych dzieci podmiotom trzecim w celach marketingowych</li>
+        <li>Nie stosujemy śledzenia ani profilowania użytkowników</li>
+        <li>Rodzic lub opiekun może w dowolnym momencie usunąć konto dziecka</li>
+    </ul>
+    <p>Działamy zgodnie z zasadami ochrony prywatności dzieci, w tym z wytycznymi <strong>COPPA</strong> (Children's Online Privacy Protection Act) oraz <strong>RODO</strong> (art. 8).</p>
+</div>
+
+<div class="card">
+    <h2>4. Usługi zewnętrzne</h2>
+    <p>Aplikacja korzysta z następujących usług zewnętrznych:</p>
+    <table>
+        <thead>
+            <tr><th>Usługa</th><th>Cel</th><th>Polityka prywatności</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Supabase</strong></td><td>Backend: uwierzytelnianie, baza danych, przechowywanie plików</td><td><a href="https://supabase.com/privacy" target="_blank">supabase.com/privacy</a></td></tr>
+            <tr><td><strong>RevenueCat</strong></td><td>Zarządzanie subskrypcjami i zakupami</td><td><a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a></td></tr>
+            <tr><td><strong>Google Play</strong></td><td>Dystrybucja aplikacji, przetwarzanie płatności</td><td><a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></td></tr>
+            <tr><td><strong>Google Sign-In</strong></td><td>Logowanie przez konto Google</td><td><a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></td></tr>
+            <tr><td><strong>Facebook Login</strong></td><td>Logowanie przez konto Facebook</td><td><a href="https://www.facebook.com/privacy/policy" target="_blank">facebook.com/privacy</a></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card">
+    <h2>5. Płatności i subskrypcje</h2>
+    <ul>
+        <li>Płatności są przetwarzane przez <strong>Google Play Billing</strong> za pośrednictwem <strong>RevenueCat</strong></li>
+        <li>Nie przechowujemy danych karty kredytowej ani danych bankowych</li>
+        <li>Subskrypcje można zarządzać w ustawieniach Google Play</li>
+        <li>Zakupy jednostkowe są permanentne (dostęp na zawsze)</li>
+        <li>Po anulowaniu subskrypcji użytkownik zachowuje dostęp do zakupionych jednostkowo treści</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>6. Przechowywanie i bezpieczeństwo danych</h2>
+    <ul>
+        <li>Dane przechowywane są na serwerach <strong>Supabase</strong> (infrastruktura AWS, region EU)</li>
+        <li>Hasła są szyfrowane — nie przechowujemy ich w formie jawnej</li>
+        <li>Komunikacja z serwerem odbywa się przez szyfrowane połączenie (HTTPS/TLS)</li>
+        <li>Dostęp do danych jest kontrolowany przez system ról i uprawnień (Row Level Security)</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>7. Prawa użytkownika</h2>
+    <p>Każdy użytkownik ma prawo do:</p>
+    <ul>
+        <li><strong>Dostępu</strong> — wglądu w swoje dane (widoczne w profilu)</li>
+        <li><strong>Sprostowania</strong> — poprawienia swoich danych</li>
+        <li><strong>Usunięcia</strong> — trwałego usunięcia konta i wszystkich powiązanych danych (funkcja dostępna w aplikacji: Profil → Usuń konto)</li>
+        <li><strong>Przenoszenia</strong> — uzyskania kopii swoich danych</li>
+        <li><strong>Sprzeciwu</strong> — wniesienia sprzeciwu wobec przetwarzania danych</li>
+    </ul>
+    <p>W celu realizacji powyższych praw prosimy o kontakt: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+</div>
+
+<div class="card">
+    <h2>8. Okres przechowywania danych</h2>
+    <ul>
+        <li>Dane konta przechowywane są do momentu usunięcia konta przez użytkownika</li>
+        <li>Po usunięciu konta dane są trwale usuwane w ciągu 30 dni</li>
+        <li>Dane transakcji płatniczych przechowywane są zgodnie z wymogami prawnymi (do 5 lat)</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>9. Pliki cookie i dane lokalne</h2>
+    <p>Aplikacja nie wykorzystuje plików cookie do śledzenia użytkowników. Dane preferencji (kolory sylab, rozmiar czcionki, wybrany język) przechowywane są lokalnie na urządzeniu użytkownika za pomocą mechanizmu <em>SharedPreferences</em>.</p>
+</div>
+
+<div class="card">
+    <h2>10. Zmiany w polityce prywatności</h2>
+    <p>Zastrzegamy sobie prawo do aktualizacji niniejszej Polityki Prywatności. O istotnych zmianach poinformujemy użytkowników poprzez powiadomienie w aplikacji. Aktualna wersja jest zawsze dostępna pod tym adresem.</p>
+</div>
+
+<div class="card">
+    <h2>11. Kontakt</h2>
+    <p>W przypadku pytań dotyczących prywatności lub przetwarzania danych prosimy o kontakt:</p>
+    <p><strong>Sebastian Rosiński</strong><br>
+    E-mail: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+</div>
+
+</div><!-- /pl -->
+
+<div class="en" style="display:none">
+
+<div class="card">
+    <h2>Privacy Policy</h2>
+    <p><strong>Effective date:</strong> March 30, 2026</p>
+    <p><strong>Last updated:</strong> March 30, 2026</p>
+    <p>This Privacy Policy describes how the "Read by Syllables" application (hereinafter: "App") collects, uses, and protects the personal data of its users. The App is designed for children aged 4–8 using it under the supervision of parents or guardians.</p>
+</div>
+
+<div class="card">
+    <h2>1. Data Controller</h2>
+    <p>The data controller is:</p>
+    <p><strong>Sebastian Rosiński</strong><br>
+    Email: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+</div>
+
+<div class="card">
+    <h2>2. What Data We Collect</h2>
+    <table>
+        <thead>
+            <tr><th>Category</th><th>Data</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="badge">Registration</span></td><td>Email address, password (encrypted)</td><td>Account creation and security</td></tr>
+            <tr><td><span class="badge">OAuth</span></td><td>Google/Facebook identifier, email address</td><td>Sign-in via external accounts</td></tr>
+            <tr><td><span class="badge">Settings</span></td><td>Syllable colors, font size, interface language</td><td>Experience personalization</td></tr>
+            <tr><td><span class="badge">Payments</span></td><td>Transaction identifier (RevenueCat/Google Play)</td><td>Subscription and purchase management</td></tr>
+            <tr><td><span class="badge">Content</span></td><td>Publications created by authors (text, images)</td><td>Providing educational platform services</td></tr>
+        </tbody>
+    </table>
+
+    <div class="highlight">
+        <strong>What we do NOT collect:</strong> We do not collect location data, browsing activity, behavioral profiles, contacts, camera or microphone data (except intentional image uploads by authors).
+    </div>
+</div>
+
+<div class="card">
+    <h2>3. Children's Privacy</h2>
+    <p>The App is designed for children aged 4–8 and we prioritize their privacy protection:</p>
+    <ul>
+        <li>Accounts are created by parents or legal guardians</li>
+        <li>We do not collect data from children beyond educational content usage</li>
+        <li>We do not display advertisements</li>
+        <li>We do not share children's data with third parties for marketing purposes</li>
+        <li>We do not use tracking or user profiling</li>
+        <li>Parents or guardians may delete their child's account at any time</li>
+    </ul>
+    <p>We comply with children's privacy protection guidelines, including <strong>COPPA</strong> (Children's Online Privacy Protection Act) and <strong>GDPR</strong> (Article 8).</p>
+</div>
+
+<div class="card">
+    <h2>4. Third-Party Services</h2>
+    <p>The App uses the following third-party services:</p>
+    <table>
+        <thead>
+            <tr><th>Service</th><th>Purpose</th><th>Privacy Policy</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Supabase</strong></td><td>Backend: authentication, database, file storage</td><td><a href="https://supabase.com/privacy" target="_blank">supabase.com/privacy</a></td></tr>
+            <tr><td><strong>RevenueCat</strong></td><td>Subscription and purchase management</td><td><a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a></td></tr>
+            <tr><td><strong>Google Play</strong></td><td>App distribution, payment processing</td><td><a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></td></tr>
+            <tr><td><strong>Google Sign-In</strong></td><td>Google account sign-in</td><td><a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></td></tr>
+            <tr><td><strong>Facebook Login</strong></td><td>Facebook account sign-in</td><td><a href="https://www.facebook.com/privacy/policy" target="_blank">facebook.com/privacy</a></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card">
+    <h2>5. Payments and Subscriptions</h2>
+    <ul>
+        <li>Payments are processed by <strong>Google Play Billing</strong> via <strong>RevenueCat</strong></li>
+        <li>We do not store credit card or banking information</li>
+        <li>Subscriptions can be managed in Google Play settings</li>
+        <li>One-time purchases are permanent (access forever)</li>
+        <li>After canceling a subscription, users retain access to individually purchased content</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>6. Data Storage and Security</h2>
+    <ul>
+        <li>Data is stored on <strong>Supabase</strong> servers (AWS infrastructure, EU region)</li>
+        <li>Passwords are encrypted — we never store them in plain text</li>
+        <li>Server communication uses encrypted connections (HTTPS/TLS)</li>
+        <li>Data access is controlled through a role-based permissions system (Row Level Security)</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>7. User Rights</h2>
+    <p>Every user has the right to:</p>
+    <ul>
+        <li><strong>Access</strong> — view their data (visible in profile)</li>
+        <li><strong>Rectification</strong> — correct their data</li>
+        <li><strong>Erasure</strong> — permanently delete their account and all associated data (available in the App: Profile → Delete Account)</li>
+        <li><strong>Portability</strong> — obtain a copy of their data</li>
+        <li><strong>Objection</strong> — object to data processing</li>
+    </ul>
+    <p>To exercise these rights, please contact: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+</div>
+
+<div class="card">
+    <h2>8. Data Retention Period</h2>
+    <ul>
+        <li>Account data is stored until the user deletes their account</li>
+        <li>After account deletion, data is permanently removed within 30 days</li>
+        <li>Payment transaction data is retained as required by law (up to 5 years)</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>9. Cookies and Local Data</h2>
+    <p>The App does not use cookies for user tracking. Preference data (syllable colors, font size, selected language) is stored locally on the user's device using <em>SharedPreferences</em>.</p>
+</div>
+
+<div class="card">
+    <h2>10. Changes to This Privacy Policy</h2>
+    <p>We reserve the right to update this Privacy Policy. Users will be notified of significant changes through an in-app notification. The current version is always available at this address.</p>
+</div>
+
+<div class="card">
+    <h2>11. Contact</h2>
+    <p>For questions regarding privacy or data processing, please contact:</p>
+    <p><strong>Sebastian Rosiński</strong><br>
+    Email: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+</div>
+
+</div><!-- /en -->
+
+</div><!-- /privacy page -->
+
+
+<!-- ==================== REGULAMIN (PL) / TERMS (EN) ==================== -->
+<div class="page" id="terms">
+
+<div class="pl">
+
+<div class="card">
+    <h2>Regulamin aplikacji Read by Syllables</h2>
+    <p><strong>Data wejścia w życie:</strong> 30 marca 2026</p>
+</div>
+
+<div class="card">
+    <h2>1. Postanowienia ogólne</h2>
+    <ol>
+        <li>Niniejszy Regulamin określa zasady korzystania z aplikacji „Read by Syllables" (dalej: „Aplikacja").</li>
+        <li>Właścicielem i operatorem Aplikacji jest Sebastian Rosiński (dalej: „Operator").</li>
+        <li>Aplikacja jest narzędziem edukacyjnym pomagającym dzieciom w nauce czytania poprzez wizualne dzielenie tekstu na sylaby.</li>
+        <li>Korzystanie z Aplikacji oznacza akceptację niniejszego Regulaminu.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>2. Rejestracja i konto</h2>
+    <ol>
+        <li>Korzystanie z Aplikacji wymaga utworzenia konta za pomocą adresu e-mail, konta Google lub konta Facebook.</li>
+        <li>Konta dla dzieci poniżej 16 roku życia powinny być zakładane przez rodziców lub opiekunów prawnych.</li>
+        <li>Użytkownik jest odpowiedzialny za poufność swoich danych logowania.</li>
+        <li>Dostępne jest również logowanie gościnne z ograniczoną funkcjonalnością.</li>
+        <li>Użytkownik może w dowolnym momencie usunąć swoje konto z poziomu Aplikacji.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>3. Rodzaje kont i uprawnienia</h2>
+    <table>
+        <thead>
+            <tr><th>Typ</th><th>Uprawnienia</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Czytelnik</strong></td><td>Przeglądanie biblioteki, czytanie treści (w ramach posiadanego dostępu), personalizacja ustawień</td></tr>
+            <tr><td><strong>Autor</strong></td><td>Dodatkowo: tworzenie i edycja własnych publikacji</td></tr>
+            <tr><td><strong>Administrator</strong></td><td>Pełna kontrola nad platformą, zarządzanie użytkownikami i treściami</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card">
+    <h2>4. Płatności i subskrypcje</h2>
+    <ol>
+        <li>Aplikacja oferuje treści darmowe oraz płatne.</li>
+        <li>Dostęp do treści płatnych można uzyskać poprzez:
+            <ul>
+                <li>Subskrypcję Premium (miesięczną lub roczną)</li>
+                <li>Zakup jednostkowy (pojedyncza publikacja lub kategoria)</li>
+                <li>Kod zaproszeniowy (nadawany przez administratora)</li>
+            </ul>
+        </li>
+        <li>Płatności są przetwarzane przez Google Play Billing. Operator nie przechowuje danych płatniczych.</li>
+        <li>Subskrypcja odnawia się automatycznie. Anulowanie jest możliwe w ustawieniach Google Play.</li>
+        <li>Zakupy jednostkowe są permanentne — dostęp nie wygasa.</li>
+        <li>Zwroty podlegają zasadom Google Play Store.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>5. Treści użytkowników</h2>
+    <ol>
+        <li>Autorzy mogą tworzyć i publikować treści edukacyjne w Aplikacji.</li>
+        <li>Autor zachowuje prawa autorskie do swoich treści.</li>
+        <li>Publikując treść, autor udziela Operatorowi niewyłącznej licencji na wyświetlanie jej w Aplikacji.</li>
+        <li>Zabronione jest publikowanie treści naruszających prawa osób trzecich, nielegalnych lub nieodpowiednich dla dzieci.</li>
+        <li>Operator zastrzega sobie prawo do usunięcia treści naruszających Regulamin.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>6. Treści z Wolnych Lektur</h2>
+    <p>Część treści w Aplikacji pochodzi z serwisu <a href="https://wolnelektury.pl" target="_blank">Wolne Lektury</a> i jest udostępniana na licencji Creative Commons (CC BY-SA 4.0). Informacja o źródle i licencji jest zawarta w opisie każdej takiej publikacji.</p>
+</div>
+
+<div class="card">
+    <h2>7. Zasady korzystania</h2>
+    <p>Użytkownik zobowiązuje się do:</p>
+    <ul>
+        <li>Korzystania z Aplikacji zgodnie z jej przeznaczeniem edukacyjnym</li>
+        <li>Niepodejmowania prób obejścia zabezpieczeń lub systemu dostępu</li>
+        <li>Nieudostępniania kodów zaproszeniowych osobom nieuprawnionym</li>
+        <li>Niekorzystania z Aplikacji w sposób mogący zakłócić jej działanie</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>8. Odpowiedzialność</h2>
+    <ol>
+        <li>Operator dokłada starań, aby Aplikacja działała poprawnie, ale nie gwarantuje nieprzerwanej dostępności.</li>
+        <li>Operator nie ponosi odpowiedzialności za skutki wynikające z podania nieprawdziwych danych przez użytkownika.</li>
+        <li>Treści edukacyjne nie zastępują profesjonalnej pomocy pedagogicznej ani logopedycznej.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>9. Zmiany Regulaminu</h2>
+    <p>Operator zastrzega sobie prawo do zmiany Regulaminu. O istotnych zmianach użytkownicy zostaną poinformowani w Aplikacji. Dalsze korzystanie z Aplikacji po wprowadzeniu zmian oznacza ich akceptację.</p>
+</div>
+
+<div class="card">
+    <h2>10. Kontakt</h2>
+    <p><strong>Sebastian Rosiński</strong><br>
+    E-mail: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+</div>
+
+</div><!-- /pl -->
+
+<div class="en" style="display:none">
+
+<div class="card">
+    <h2>Terms of Service — Read by Syllables</h2>
+    <p><strong>Effective date:</strong> March 30, 2026</p>
+</div>
+
+<div class="card">
+    <h2>1. General Provisions</h2>
+    <ol>
+        <li>These Terms of Service govern the use of the "Read by Syllables" application (hereinafter: "App").</li>
+        <li>The App is owned and operated by Sebastian Rosiński (hereinafter: "Operator").</li>
+        <li>The App is an educational tool helping children learn to read through visual syllable highlighting.</li>
+        <li>Using the App constitutes acceptance of these Terms.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>2. Registration and Account</h2>
+    <ol>
+        <li>Using the App requires creating an account via email, Google, or Facebook.</li>
+        <li>Accounts for children under 16 should be created by parents or legal guardians.</li>
+        <li>Users are responsible for the confidentiality of their login credentials.</li>
+        <li>Guest access with limited functionality is also available.</li>
+        <li>Users may delete their account at any time from within the App.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>3. Account Types and Permissions</h2>
+    <table>
+        <thead>
+            <tr><th>Type</th><th>Permissions</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Reader</strong></td><td>Browse library, read content (within granted access), personalize settings</td></tr>
+            <tr><td><strong>Author</strong></td><td>Additionally: create and edit own publications</td></tr>
+            <tr><td><strong>Administrator</strong></td><td>Full platform control, manage users and content</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card">
+    <h2>4. Payments and Subscriptions</h2>
+    <ol>
+        <li>The App offers both free and paid content.</li>
+        <li>Access to paid content can be obtained through:
+            <ul>
+                <li>Premium subscription (monthly or yearly)</li>
+                <li>One-time purchase (single publication or category)</li>
+                <li>Invitation code (granted by administrator)</li>
+            </ul>
+        </li>
+        <li>Payments are processed through Google Play Billing. The Operator does not store payment data.</li>
+        <li>Subscriptions auto-renew. Cancellation is available in Google Play settings.</li>
+        <li>One-time purchases are permanent — access does not expire.</li>
+        <li>Refunds are subject to Google Play Store policies.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>5. User Content</h2>
+    <ol>
+        <li>Authors may create and publish educational content in the App.</li>
+        <li>Authors retain copyright to their content.</li>
+        <li>By publishing content, authors grant the Operator a non-exclusive license to display it in the App.</li>
+        <li>Publishing content that violates third-party rights, is illegal, or inappropriate for children is prohibited.</li>
+        <li>The Operator reserves the right to remove content that violates these Terms.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>6. Content from Wolne Lektury</h2>
+    <p>Some content in the App comes from <a href="https://wolnelektury.pl" target="_blank">Wolne Lektury</a> (Polish Digital Library) and is shared under the Creative Commons license (CC BY-SA 4.0). Source and license information is included in the description of each such publication.</p>
+</div>
+
+<div class="card">
+    <h2>7. Usage Rules</h2>
+    <p>Users agree to:</p>
+    <ul>
+        <li>Use the App in accordance with its educational purpose</li>
+        <li>Not attempt to bypass security or access control systems</li>
+        <li>Not share invitation codes with unauthorized persons</li>
+        <li>Not use the App in any way that may disrupt its operation</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>8. Liability</h2>
+    <ol>
+        <li>The Operator strives to ensure the App works correctly but does not guarantee uninterrupted availability.</li>
+        <li>The Operator is not responsible for consequences arising from users providing false information.</li>
+        <li>Educational content does not replace professional pedagogical or speech therapy assistance.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>9. Changes to Terms</h2>
+    <p>The Operator reserves the right to modify these Terms. Users will be notified of significant changes within the App. Continued use of the App after changes constitutes acceptance.</p>
+</div>
+
+<div class="card">
+    <h2>10. Contact</h2>
+    <p><strong>Sebastian Rosiński</strong><br>
+    Email: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+</div>
+
+</div><!-- /en -->
+
+</div><!-- /terms page -->
+
+
+<!-- ==================== O APLIKACJI / ABOUT ==================== -->
+<div class="page" id="about">
+
+<div class="pl">
+
+<div class="card">
+    <h2>O aplikacji Read by Syllables</h2>
+    <p><strong>Read by Syllables</strong> to aplikacja edukacyjna pomagająca dzieciom w nauce czytania poprzez wizualne dzielenie tekstu na sylaby i wyróżnianie ich naprzemiennymi kolorami.</p>
+</div>
+
+<div class="card">
+    <h2>Funkcje</h2>
+    <ul>
+        <li><strong>Kolorowe sylaby</strong> — automatyczne dzielenie tekstu na sylaby z naprzemiennym kolorowaniem</li>
+        <li><strong>Biblioteka publikacji</strong> — bajki, wiersze, baśnie i inne teksty edukacyjne</li>
+        <li><strong>Dwujęzyczność</strong> — pełne wsparcie dla języka polskiego i angielskiego</li>
+        <li><strong>Personalizacja</strong> — wybór kolorów sylab, rozmiar czcionki, motywy tła</li>
+        <li><strong>Własny tekst</strong> — wpisz dowolny tekst i zobacz go z kolorowymi sylabami</li>
+        <li><strong>Druk i PDF</strong> — eksportuj materiały do wydruku</li>
+        <li><strong>Treści z Wolnych Lektur</strong> — klasyka polskiej literatury dziecięcej</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>Dla kogo?</h2>
+    <ul>
+        <li><strong>Dzieci 4–8 lat</strong> uczące się czytać</li>
+        <li><strong>Rodzice</strong> wspierający naukę czytania w domu</li>
+        <li><strong>Nauczyciele</strong> szukający materiałów do pracy w klasie</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>Kontakt</h2>
+    <p>Masz pytanie lub sugestię? Napisz do nas:</p>
+    <p><a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+</div>
+
+</div><!-- /pl -->
+
+<div class="en" style="display:none">
+
+<div class="card">
+    <h2>About Read by Syllables</h2>
+    <p><strong>Read by Syllables</strong> is an educational app that helps children learn to read by visually splitting text into syllables and highlighting them with alternating colors.</p>
+</div>
+
+<div class="card">
+    <h2>Features</h2>
+    <ul>
+        <li><strong>Colored syllables</strong> — automatic syllable splitting with alternating color highlighting</li>
+        <li><strong>Publication library</strong> — fairy tales, poems, stories and other educational texts</li>
+        <li><strong>Bilingual</strong> — full support for Polish and English</li>
+        <li><strong>Personalization</strong> — syllable colors, font size, background themes</li>
+        <li><strong>Custom text</strong> — enter any text and see it with colored syllables</li>
+        <li><strong>Print and PDF</strong> — export materials for printing</li>
+        <li><strong>Wolne Lektury content</strong> — classic Polish children's literature</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>Who is it for?</h2>
+    <ul>
+        <li><strong>Children aged 4–8</strong> learning to read</li>
+        <li><strong>Parents</strong> supporting reading practice at home</li>
+        <li><strong>Teachers</strong> looking for classroom materials</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>Contact</h2>
+    <p>Have a question or suggestion? Write to us:</p>
+    <p><a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
+</div>
+
+</div><!-- /en -->
+
+</div><!-- /about page -->
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Sebastian Rosiński — Read by Syllables</p>
+    <p>
+        <a href="#" onclick="showPage('privacy')">Polityka Prywatności</a> ·
+        <a href="#" onclick="showPage('terms')">Regulamin</a> ·
+        <a href="mailto:sebastian.rosinski.1989@gmail.com">Kontakt</a>
+    </p>
+</footer>
+
+<script>
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    document.querySelectorAll('#main-nav a[data-page]').forEach(a => {
+        a.classList.toggle('active', a.dataset.page === pageId);
+    });
+    window.scrollTo(0, 0);
+}
+
+let currentLang = 'pl';
+function toggleLang() {
+    currentLang = currentLang === 'pl' ? 'en' : 'pl';
+    const otherLang = currentLang === 'pl' ? 'en' : 'pl';
+    document.querySelectorAll('.' + currentLang).forEach(el => el.style.display = '');
+    document.querySelectorAll('.' + otherLang).forEach(el => el.style.display = 'none');
+}
+</script>
+
+</body>
+</html>
