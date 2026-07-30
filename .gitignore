@@ -1,0 +1,6 @@
+# Śmieci systemowe macOS
+.DS_Store
+._*
+
+# Materiał roboczy — makiety i eksperymenty nie trafiają na produkcję
+_mockups*/
