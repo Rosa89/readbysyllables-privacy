@@ -1,26 +1,16 @@
 /* Mądre Dzieciaki — zakładki dokumentów i przełącznik języka.
-   Wybór języka trzymamy w localStorage, żeby przejście między stronami nie
-   resetowało go rodzicowi w połowie czytania. */
+   Każda wersja językowa strony to osobny statyczny plik, więc przełącznik
+   nie przełącza treści w miejscu, tylko przenosi na adres z <option value>. */
 (function () {
   'use strict';
 
-  var KEY = 'madre-dzieciaki-lang';
-  var root = document.documentElement;
-
-  function applyLang(lang) {
-    root.setAttribute('data-lang', lang);
-    root.setAttribute('lang', lang);
-    try { localStorage.setItem(KEY, lang); } catch (e) { /* tryb prywatny */ }
-  }
-
-  var saved = null;
-  try { saved = localStorage.getItem(KEY); } catch (e) { /* brak dostępu */ }
-  if (saved === 'pl' || saved === 'en') applyLang(saved);
-
-  var toggle = document.querySelector('.lang-toggle');
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      applyLang(root.getAttribute('data-lang') === 'en' ? 'pl' : 'en');
+  /* Przełącznik języka — <div class="lang-switch"><select> w nagłówku. Kotwica
+     zakładki (#deletion itd.) jest wspólna dla wszystkich wersji, więc
+     zabieramy ją ze sobą i rodzic ląduje w tej samej sekcji. */
+  var langSelect = document.querySelector('.lang-switch select');
+  if (langSelect) {
+    langSelect.addEventListener('change', function () {
+      window.location.href = langSelect.value + window.location.hash;
     });
   }
 

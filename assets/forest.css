@@ -20,11 +20,6 @@ body{margin:0;background:var(--paper);color:var(--ink);
 .wrap{max-width:1120px;margin:0 auto;padding:0 1.5rem}
 img{max-width:100%}
 
-/* Dwujęzyczność — obie wersje w HTML, widoczna ta z data-lang na <html>.
-   Bez JS zostaje polska, więc strona działa przy zablokowanych skryptach. */
-[data-lang="pl"] .lang-en,
-[data-lang="en"] .lang-pl{display:none}
-
 a{color:var(--green);text-decoration-thickness:1px;text-underline-offset:2px}
 a:hover{color:var(--terra)}
 :focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:3px}
@@ -106,10 +101,31 @@ footer{border-top:1px solid var(--line);padding:1.75rem 0;font-size:.82rem;color
 .doc-nav button[aria-selected="true"]{color:var(--green);border-bottom-color:var(--green);
   font-weight:600}
 
-.lang-toggle{margin-left:auto;align-self:center;font-family:Roboto,sans-serif;font-size:.74rem;
-  font-weight:700;letter-spacing:.08em;color:var(--green);background:var(--cream);
-  border:1px solid var(--line);padding:.35rem .85rem;border-radius:999px;cursor:pointer}
-.lang-toggle:hover{background:var(--paper);border-color:var(--green)}
+/* ══ PRZEŁĄCZNIK JĘZYKA (strony dokumentów) ═════════════════════════════ */
+/* Każdy język to osobna statyczna strona (GitHub Pages nie negocjuje
+   języka), więc przełącznik to zwykły <select> z adresami wersji — przejście
+   robi site.js, bez JS zostają linki z <noscript>. Siedzi w rogu lasu,
+   wyrównany do krawędzi treści (.wrap = 1120px + 1.5rem marginesu). */
+.lang-switch{position:absolute;z-index:3;top:clamp(1rem,2.4vw,1.5rem);
+  right:max(1.5rem,calc(50% - 560px + 1.5rem))}
+.lang-switch select{appearance:none;-webkit-appearance:none;cursor:pointer;margin:0;
+  font-family:Roboto,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:.8rem;font-weight:500;letter-spacing:.03em;line-height:1.2;color:#FDFAF2;
+  background:rgba(18,26,14,.42) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23BFE08F' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right .85rem center/.6rem auto;
+  border:1px solid rgba(253,250,242,.34);border-radius:999px;
+  padding:.44rem 2.15rem .44rem .95rem;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  text-shadow:0 1px 6px rgba(10,16,8,.5);
+  transition:border-color .2s,background-color .2s}
+.lang-switch select:hover{border-color:#E9C77E;background-color:rgba(18,26,14,.6)}
+.lang-switch select:focus-visible{outline:2px solid #E9C77E;outline-offset:3px;border-radius:999px}
+.lang-switch option{color:var(--ink);background:var(--paper);font-weight:400}
+/* Bez JS: <noscript> chowa select i pokazuje linki do pozostałych wersji */
+.lang-switch .lang-links{display:inline-flex;gap:.6rem;font-family:Roboto,sans-serif;
+  font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  text-shadow:0 1px 6px rgba(10,16,8,.6)}
+.lang-switch .lang-links a{color:#BFE08F;text-decoration:none;border-bottom:1px solid rgba(191,224,143,.5)}
+.lang-switch .lang-links a:hover{color:#E9C77E;border-bottom-color:#E9C77E}
 
 .page{display:none}
 .page.active{display:block}
@@ -173,10 +189,10 @@ th{background:#F3F6EE;font-family:Newsreader,serif;font-weight:600;color:var(--g
 .back::before{content:'←';color:var(--terra)}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
-  .app,.app::after,.doc-nav button{transition:none}}
+  .app,.app::after,.doc-nav button,.lang-switch select{transition:none}}
 
 @media print{
-  .band,.doc-nav,.lang-toggle,.back,.contact-cta{display:none}
+  .band,.doc-nav,.lang-switch,.back,.contact-cta{display:none}
   body{background:#fff}
   article{max-width:none}
 }
